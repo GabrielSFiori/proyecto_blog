@@ -1,47 +1,39 @@
-from .models import PostCategory
-from .models import Post
-from .models import Category
 from django.contrib import admin
-from .models import Comment
 
+from .models import Post, Category, Comment, PostCategory
 
-admin.site.register(PostCategory)
-
-admin.site.register(Comment)
+# Register your models here.
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'color', 'slug')
-    list_filter = ('name',)
+    list_display = ('name', 'description', 'color')
+    list_filter = ('name', 'color')
     search_fields = ('name', 'description')
-    ordering = ('name',)
-    fieldsets = (
-        ('Category', {
-            'fields': ('name', 'description', 'color', 'slug')
-        }),
-    )
+    fields = ('name', 'description', 'color')
 
 
-class PostCategoryInLine(admin.TabularInline):
+admin.site.register(Comment)
+admin.site.register(PostCategory)
+
+
+class PostCategoryInline(admin.TabularInline):
     model = PostCategory
     extra = 1
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'content',
-                    'created_at', 'updated_at', 'status')
-    list_filter = ('status', 'created_at', 'updated_at')
-    readonly_fields = ('created_at', 'updated_at')
+    list_display = ('title', 'author', 'create_at', 'update_at', 'status')
+    list_filter = ('status', 'create_at', 'update_at')
+    readonly_fields = ('create_at', 'update_at')
     search_fields = ('title', 'content')
-    date_hierarchy = 'created_at'
-    ordering = ('title',)
-    inlines = [PostCategoryInLine,]
+    date_hierarchy = 'create_at'
+    ordering = ('create_at',)
+    inlines = [PostCategoryInline,]
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
         ('Post', {
-            'fields': ('title', 'content', 'slug', 'author',
-                       'created_at', 'updated_at', 'status')
+            'fields': ('title', 'author', 'content', 'slug', 'status', 'image')
         }),
     )

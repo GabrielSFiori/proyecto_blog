@@ -13,7 +13,7 @@ def register(request):
             login(request, user)
             messages.success(request, 'La cuenta ha sido creada con éxito.')
             # Redirigir a la página de inicio después del registro
-            return redirect('home')
+            return redirect('posts')
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
@@ -29,7 +29,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 # Redirigir a la página de inicio después del inicio de sesión
-                return redirect('home')
+                return redirect('posts')
             else:
                 messages.error(
                     request, 'Nombre de usuario o contraseña incorrectos.')
@@ -40,4 +40,4 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('posts')

@@ -4,18 +4,18 @@
 
 <head>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'learning/css/styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'learning/css/bootstrap.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'learning/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/navbar.css' %}">
     {% block css %}
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/fontawesome.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/solid.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'learning/css/pygments.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/pygments.css' %}">
     {% endblock %}
     <title>
         {% block title %}
-        Plataforma de Aprendizaje
+        Blog App
         {% endblock %}
     </title>
 </head>
@@ -29,6 +29,6 @@
         {% endblock %}
     </div>
 </body>
-<script src="{% static 'learning/js/bootstrap.js' %}"></script>
+<script src="{% static 'blog_app/js/bootstrap.js' %}"></script>
 
 </html>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blog App{% endblock %}
+
+{% block content %}
+<h1 class="ui header">Blog App</h1>
+{% for post in posts %}
+<div class="ui segment">
+    <h2 class="ui header">{{ post.title }}</h2>
+    <p>Creado por {{ post.author }} el {{ post.create_at|date:"d/m/Y" }}.</p>
+    <div>
+        {% for category in post.categories.all %}
+        <a href="{% url 'category' category.slug %}" class="ui button tertiary {{ category.color }}">{{ category.name
+            }}</a>
+        {% endfor %}
+    </div>
+    <div class="ui raised segment">
+        <p>{{ post.content|truncatewords:50 }}</p>
+        <a href="{% url 'post_detail' post.slug %}" class="ui right floated button">Continuar leyendo</a>
+        <a href="{% url 'post_detail' post.slug %}#comments" class="ui button">
+            {{ post.comments_count }} comentarios
+        </a>
+        <label><strong>{{ post.views_count }}</strong> vistas</label>
+        <!-- Agregar conteo de likes -->
+        <label><i class="heart icon"></i><strong>{{ post.likes_count }}</strong> likes</label>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
