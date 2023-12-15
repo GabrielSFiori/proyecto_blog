@@ -13,6 +13,9 @@
             <div class="item">
                 <a href="{% url 'create_post' %}" class="ui primary button">Crear Post</a>
             </div>
+            <div class="item">
+                <a href="{% url 'posts' %}" class="ui primary button">Volver a la pantalla principal</a>
+            </div>
 
             {% else %}
             <div class="item">
@@ -20,6 +23,9 @@
             </div>
             <div class="item">
                 <a href="{% url 'register' %}" class="ui primary button">Crear cuenta</a>
+            </div>
+            <div class="item">
+                <a href="{% url 'posts' %}" class="ui primary button">Volver a la pantalla principal</a>
             </div>
 
             {% endif %}
