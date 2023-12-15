@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- Título del Post -->
+
+{% block title %}
+{{ post.title }}
+{% endblock %}
+<!-- Contenido del Post -->
+{% block content %}
+<h1 class="ui header">{{ post.title }}</h1>
+
+<!-- Autor y Fecha -->
+<p>Por Administrador a las {{ post.create_at }}</p>
+
+<!-- Categorías -->
+<div>
+    {% for category in post.categories.all %}
+    <a href="{% url 'category' category.slug %}" class="ui button tertiary {{ category.color }}">{{ category.name }}</a>
+    {% endfor %}
+</div>
+
+<!-- Caja de Contenido del Post -->
+<div class="ui raised segment">
+    <!-- Imagen del Post -->
+    {% if post.image %}
+    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="ui centered large image">
+    {% endif %}
+
+    <!-- Texto del Post -->
+    <span class="ui large text justified" style="padding: 10px;">
+        {{ post.content|linebreaks }}
+    </span>
+
+
+    <!-- Conteo de Likes y Vistas -->
+    <form method="post" action="{% url 'like_post' post.id %}">
+        {% csrf_token %}
+        <button type="submit" class="ui labeled button" style="margin: 10px;">
+            <span class="ui button">
+                <i class="heart icon"></i> Like
+            </span>
+            <a class="ui basic label">
+                {{ post.likes_count }} likes
+            </a>
+        </button>
+    </form>
+    <div>
+        <i class="eye icon"></i>
+        <strong>{{ post.views_count }}</strong> vistas
+    </div>
+</div>
+
+<!-- Sección de Comentarios -->
+<h3 class="ui dividing header">{{ post.comments.count }} Comentarios</h3>
+
+<!-- Campo de Entrada para Nuevo Comentario -->
+
+<form class="ui form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="ui primary button">Publicar Comentario</button>
+</form>
+
+<!-- Listado de Comentarios -->
+<div class="ui comments" id="comments" style="padding-bottom: 250px;">
+    {% for comment in post.comments.all %}
+    <div class="comment">
+        <a class="avatar">
+            <img src="{% static 'img/avatar.jpg' %}">
+        </a>
+        <div class="content">
+            <a class="author">{{ comment.author }}</a>
+            <div class="metadata">
+                <span class="date">{{ comment.created_at }}</span>
+                {% if comment.likes_count > 0 %}
+                <div class="rating">
+                    <i class="heart icon"></i>
+                    {{ comment.likes_count }} likes
+                </div>
+                {% endif %}
+            </div>
+            <div class="text">
+                {{ comment.content }}
+            </div>
+            <form method="post" action="{% url 'like_comment' comment.id %}">
+                {% csrf_token %}
+                <button type="submit" class="ui button">
+                    <i class="heart icon"></i> Like
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

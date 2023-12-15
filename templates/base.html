@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/navbar.css' %}">
+    {% block css %}
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/solid.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog_app/static/css/pygments.css' %}">
+    {% endblock %}
+    <title>
+        {% block title %}
+        Blog App
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+<script src="{% static 'blog_app/js/bootstrap.js' %}"></script>
+
+</html>

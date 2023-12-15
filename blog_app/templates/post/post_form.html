@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="ui container">
+    <form class="ui form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="field">
+            <label>Título</label>
+            {{ post_form.title }}
+        </div>
+        <div class="field">
+            <label>Contenido</label>
+            {{ post_form.content }}
+        </div>
+        <div class="field">
+            <label>Estado</label>
+            <select name="status" class="ui dropdown">
+                <option value="">Selecciona un estado</option>
+                <option value="draft" {% if post_form.status=='draft' %}selected{% endif %}>DRAFT</option>
+                <option value="published" {% if post_form.status=='published' %}selected{% endif %}>PUBLISHED</option>
+                <option value="removed" {% if post_form.status=='removed' %}selected{% endif %}>REMOVED</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Imagen</label>
+            {{ post_form.image }}
+        </div>
+        <div class="field">
+            <label for="categories">Categorías</label>
+            <select class="ui fluid search dropdown" multiple="" name="categories" id="categories">
+                <option value="">Seleccione Categoría(s)</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="ui button primary">Enviar</button>
+    </form>
+</div>
+{% endblock %}

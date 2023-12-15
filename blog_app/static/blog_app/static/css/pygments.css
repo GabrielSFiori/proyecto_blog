@@ -1,0 +1,41 @@
+﻿pre {
+    color: #c5c8c6;
+    background-color: hsla(257, 31%, 11%, 1);
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/* Estilos para comentarios */
+.c, .cm, .c1, .cs, .ch, .cpf, .cp { color: #b294bb; font-style: italic; }
+
+/* Estilos para palabras clave */
+.k, .kd, .kn, .kp, .kr, .kt, .kc { color: #FF657C; font-weight: bold; }
+
+/* Estilos para cadenas */
+.s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .sa { color: #b5bd68; }
+
+/* Estilos para nombres y clases */
+.na, .nb, .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nt, .nv, .ow, .bp, .fm, .vc, .vg, .vi, .vm { color: #f0c674; font-weight: bold; }
+
+/* Estilos para números */
+.m, .mb, .mf, .mh, .mi, .mo, .il { color: #de935f; }
+
+/* Estilos para operadores */
+.o { color: #8abeb7; }
+
+/* Estilos genéricos para borrado, énfasis, etc. */
+.gd { color: #cc6666; }
+.ge { font-style: italic; }
+.gh { color: #c5c8c6; font-weight: bold; }
+.gi { color: #b5bd68; }
+.go { color: #969896; }
+.gp { color: #c5c8c6; font-weight: bold; }
+.gs { font-weight: bold; }
+.gu { color: #8abeb7; font-weight: bold; }
+.gt { color: #8abeb7; }
+
+/* Otros estilos */
+.err { border: 1px solid #FF0000; }
+.gr { color: #e40000; }
+.w { color: #c5c8c6; } /* Espacio en blanco */
